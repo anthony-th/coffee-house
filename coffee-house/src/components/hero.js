@@ -1,28 +1,19 @@
-export const heroSection = document.createElement('section');
-heroSection.classList.add('section', 'hero-section');
-const heroVideoAutoPlay = document.createElement('video');
-heroVideoAutoPlay.classList.add('hero-video');
+import { createElement } from "../common/createElement";
+
+export const heroSection = createElement('section', ['section', 'hero-section']);
+const heroVideoAutoPlay = createElement('video', ['hero-video']);
 heroVideoAutoPlay.autoplay = true;
 heroVideoAutoPlay.loop = true;
 heroVideoAutoPlay.muted = true;
 heroVideoAutoPlay.controls = false;
 heroVideoAutoPlay.controlslist = 'nodownload';
 heroVideoAutoPlay.poster = './assets/img/img-hero.webp';
-const videoSource = document.createElement('source');
-videoSource.src = './assets/videos/video-2160p.webm';
-videoSource.type = 'video/webm';
-const heroContent = document.createElement('div');
-heroContent.classList.add('hero-block');
-const heroTitle = document.createElement('h1');
-heroTitle.classList.add('hero-title');
-heroTitle.innerHTML = `<span class="italic-accent">Enjoy</span> premium coffee at our charming cafe`
-const heroSubtitle = document.createElement('p');
+const videoSource = createElement('source', [], '', { src: './assets/videos/video-2160p.webm', type: 'video/webm' });
+const heroContent = createElement('div', ['hero-block']);
+const heroTitle = createElement('h1', ['hero-title'], `<span class="italic-accent">Enjoy</span> premium coffee at our charming cafe`, {}, true);
+const heroSubtitle = createElement('p', ['hero-text'], 'With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.');
 heroSubtitle.textContent = 'With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.';
-heroSubtitle.classList.add('hero-text');
-const heroButton = document.createElement('a');
-heroButton.classList.add('hero-btn', 'cursor-pointer');
-heroButton.href = './menu.html';
-heroButton.innerHTML = '<span>Menu</span>';
+const heroButton = createElement('a', ['hero-btn', 'cursor-pointer'], '<span>Menu</span>', { href: './menu.html' }, true);
 
 heroContent.append(heroTitle, heroSubtitle, heroButton);
 heroVideoAutoPlay.append(videoSource);
