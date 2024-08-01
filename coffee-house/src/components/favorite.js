@@ -1,88 +1,20 @@
+import { createElement } from '../common/createElement';
 import sliderJson from '../data/slider.json';
 
-export const favoriteSection = document.createElement('section');
-favoriteSection.classList.add('section', 'favorite-section');
-favoriteSection.id = 'favorite';
-const favoriteTitle = document.createElement('h2');
-favoriteTitle.classList.add('title');
-favoriteTitle.innerHTML = `Choose your <span class="italic-accent">favorite</span> coffee`;
-const favoriteSliderWrapper = document.createElement('div');
-favoriteSliderWrapper.classList.add('slider-block');
-
-const favoriteArrowLeft = document.createElement('a');
-favoriteArrowLeft.classList.add('arrow', 'cursor-pointer');
-favoriteArrowLeft.src = '';
-const arrowLeftIcon = document.createElement('svg');
-arrowLeftIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const favoriteSection = createElement('section', ['section', 'favorite-section'], '', { id: 'favorite'});
+const favoriteTitle = createElement('h2', ['title'], `Choose your <span class="italic-accent">favorite</span> coffee`, {}, true);
+const favoriteSliderWrapper = createElement('div', ['slider-block']);
+const favoriteArrowLeft = createElement('a', ['arrow', 'cursor-pointer']);
+const arrowLeftIcon = createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
-
-const favoriteSliders = document.createElement('div');
-favoriteSliders.classList.add('sliders');
+</svg>`, {}, true);
+const favoriteSliders = createElement('div', ['sliders']);
 
 const totalSliders = sliderJson.length;
 const allSliders = [];
 let startSlider = 0;
 let autoScrollInterval;
 let pause = false;
-
-sliderJson.forEach((item) => {
-  const favoriteSlider = document.createElement('div');
-  favoriteSlider.classList.add('slider');
-  
-  const sliderImg = document.createElement('img');
-  sliderImg.classList.add('slider-img', 'user-select-none');
-  sliderImg.src = item.img;
-  sliderImg.alt = '';
-
-  const favoriteTextBlock = document.createElement('div');
-  favoriteTextBlock.classList.add('slider-textblock');
-  
-  const favoriteSliderTitle = document.createElement('h2');
-  favoriteSliderTitle.classList.add('slider-title', 'user-select-none');
-  favoriteSliderTitle.textContent = item.name;
-
-  const favoriteSliderText = document.createElement('p');
-  favoriteSliderText.classList.add('slider-text', 'user-select-none');
-  favoriteSliderText.textContent = item.description;
-
-  const favoriteSliderPrice = document.createElement('p');
-  favoriteSliderPrice.classList.add('slider-text', 'user-select-none');
-  favoriteSliderPrice.textContent = `$${item.price}`;
-
-  favoriteTextBlock.append(favoriteSliderTitle, favoriteSliderText, favoriteSliderPrice);
-  favoriteSlider.append(sliderImg, favoriteTextBlock);
-  favoriteSliders.append(favoriteSlider);
-
-  favoriteSlider.onmouseenter = () => {
-    slidersMouseOver();
-  }
-  
-  favoriteSlider.onmouseleave = () => {
-    slidersMouseOut();
-  }
-
-  allSliders.push(favoriteSlider);
-});
-
-const favoriteArrowRight = document.createElement('a');
-favoriteArrowRight.classList.add('arrow', 'cursor-pointer');
-favoriteArrowRight.src = '';
-const arrowRightIcon = document.createElement('svg');
-arrowRightIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
-
-const sliderProgressBar = document.createElement('div');
-sliderProgressBar.classList.add('slider-progressbar');
-const sliderProgressBarLine1 = document.createElement('span');
-sliderProgressBarLine1.classList.add('progressbar-line', 'active-progress-line');
-const sliderProgressBarLine2 = document.createElement('span');
-sliderProgressBarLine2.classList.add('progressbar-line');
-const sliderProgressBarLine3 = document.createElement('span');
-sliderProgressBarLine3.classList.add('progressbar-line');
-
-const progressLines = [sliderProgressBarLine1, sliderProgressBarLine2, sliderProgressBarLine3];
 let intervalTime = 6900 / 1000;
 let mouseOverTime = 0;
 let pauseInterval = 0;
@@ -90,19 +22,46 @@ let pauseStopInterval;
 let touchFingerStart = 0;
 let touchFingerEnd = 0;
 
+sliderJson.forEach((item) => {
+  const favoriteSlider = createElement('div', ['slider']);
+  const sliderImg = createElement('img', ['slider-img', 'user-select-none'], '', { src: item.img, alt: '' });
+  const favoriteTextBlock = createElement('div', ['slider-textblock']);
+  const favoriteSliderTitle = createElement('h2', ['slider-title', 'user-select-none'], item.name);
+  const favoriteSliderText = createElement('p', ['slider-text', 'user-select-none'], item.description);
+  const favoriteSliderPrice = createElement('p', ['slider-text', 'user-select-none'], `$${item.price}`);
+
+  favoriteTextBlock.append(favoriteSliderTitle, favoriteSliderText, favoriteSliderPrice);
+  favoriteSlider.append(sliderImg, favoriteTextBlock);
+  favoriteSliders.append(favoriteSlider);
+
+  favoriteSlider.onmouseenter = slidersMouseOver;
+  favoriteSlider.onmouseleave = slidersMouseOut;
+
+  allSliders.push(favoriteSlider);
+});
+
+const favoriteArrowRight = createElement('a', ['arrow', 'cursor-pointer']);
+const arrowRightIcon = createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`, {}, true);
+
+const sliderProgressBar = createElement('div', ['slider-progressbar']);
+const progressLines = Array.from({ length: totalSliders }, (_, index) => {
+  const line = createElement('span', ['progressbar-line']);
+  if (index === 0) line.classList.add('active-progress-line');
+  sliderProgressBar.append(line);
+  return line;
+});
+
 function autoScrollX() {
-  autoScrollInterval = setInterval(() => {
-    nextSlide();
-  }, intervalTime);
+  autoScrollInterval = setInterval(nextSlide, intervalTime);
   pauseInterval = new Date().getTime();
 }
 
 function slidersMouseOver() {
   clearInterval(autoScrollInterval);
   pause = true;
-  progressLines.forEach((line) => {
-    line.classList.add('pause');
-  });
+  progressLines.forEach(line => line.classList.add('pause')); 
   mouseOverTime = new Date().getTime();
   pauseStopInterval = mouseOverTime - pauseInterval;
   intervalTime -= pauseStopInterval;
@@ -112,9 +71,7 @@ function slidersMouseOut() {
   if (pause === true) {
     autoScrollX();
     pause = false;
-    progressLines.forEach((line) => {
-      line.classList.remove('pause');
-    });
+    progressLines.forEach(line => line.classList.remove('pause'));
   }
 }
 
@@ -126,45 +83,8 @@ function updateLinesStatus() {
 
 function currentSlide(index) {
   const translateX = `translateX(${-100 * index}%)`;
-  allSliders.forEach((slider) => {
-    slider.style.transform = translateX;
-  });
+  allSliders.forEach(slider => slider.style.transform = translateX);
 }
-
-favoriteSliders.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  touchFingerStart = e.touches[0].clientX;
-  slidersMouseOver();
-});
-
-favoriteSliders.addEventListener('touchmove', (e) => {
-  touchFingerEnd = e.touches[0].clientX;
-});
-
-favoriteSliders.addEventListener('touchend', (e) => {
-  e.preventDefault()
-  slidersMouseOut();
-  swipe();
-});
-
-function swipe() {
-  if (touchFingerStart && touchFingerEnd) {
-    const direction = touchFingerStart - touchFingerEnd;
-    if (Math.abs(direction) >= 100) {
-      if (direction > 0) {
-        nextSlide();
-      } else if (direction < 0) {
-        prevSlide();
-      }
-    }
-  }
-  touchFingerStart = 0;
-  touchFingerEnd = 0;
-}
-
-favoriteSliders.addEventListener('touchcancel', () => {
-  slidersMouseOut();
-});
 
 function nextSlide() {
   clearInterval(autoScrollInterval);
@@ -184,15 +104,44 @@ function prevSlide() {
   updateLinesStatus();
 }
 
-window.onload = () => {
-  autoScrollX();
-};
+function touchStart(e) {
+  e.preventDefault();
+  touchFingerStart = e.touches[0].clientX;
+  slidersMouseOver();
+}
+
+function touchMove(e) {
+  touchFingerEnd = e.touches[0].clientX;
+}
+
+function touchEnd(e) {
+  e.preventDefault();
+  slidersMouseOut();
+  swipe();
+}
+
+function swipe() {
+  if (touchFingerStart && touchFingerEnd) {
+    const direction = touchFingerStart - touchFingerEnd;
+    if (Math.abs(direction) >= 100) {
+      direction > 0 ? nextSlide() : prevSlide();
+    }
+  }
+  touchFingerStart = 0;
+  touchFingerEnd = 0;
+}
+
+favoriteSliders.addEventListener('touchstart', touchStart);
+favoriteSliders.addEventListener('touchmove', touchMove);
+favoriteSliders.addEventListener('touchend', touchEnd);
+favoriteSliders.addEventListener('touchcancel', slidersMouseOut);
+
+window.onload = autoScrollX;
 
 favoriteArrowLeft.onclick = prevSlide;
 favoriteArrowRight.onclick = nextSlide;
 
 favoriteArrowLeft.append(arrowLeftIcon);
 favoriteArrowRight.append(arrowRightIcon);
-sliderProgressBar.append(sliderProgressBarLine1, sliderProgressBarLine2, sliderProgressBarLine3);
 favoriteSliderWrapper.append(favoriteArrowLeft, favoriteSliders, favoriteArrowRight);
 favoriteSection.append(favoriteTitle, favoriteSliderWrapper, sliderProgressBar);
