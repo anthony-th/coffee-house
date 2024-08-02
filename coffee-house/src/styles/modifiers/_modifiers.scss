@@ -34,7 +34,7 @@
 
 .tab-active {
   background: $gray;
-  border: none;
+  border-color: $gray;
   .link-block {
     background: $text-light;
   }
