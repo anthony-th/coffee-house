@@ -140,15 +140,15 @@ function openModal(item) {
   const sizeTitle = createElement("p", ["size-title"], 'Size');
   const sizeButtons = createElement("div", ["size-buttons"]);
 
-  const sizeButton1 = createElement("div", ["size-button", "size-button-active"]);
+  const sizeButton1 = createElement("div", ["size-button", 'user-select-none', "size-button-active"]);
   const sizeCircle1 = createElement("div", ['size-circle'], 'S');
   const sizeSml = createElement("p", ['size-ml'], item.sizes.s.size);
 
-  const sizeButton2 = createElement("div", ["size-button"]);
+  const sizeButton2 = createElement("div", ["size-button", 'user-select-none']);
   const sizeCircle2 = createElement("div", ["size-circle"], 'M');
   const sizeMml = createElement("p", ['size-ml'], item.sizes.m.size);
 
-  const sizeButton3 = createElement("div", ["size-button"]);
+  const sizeButton3 = createElement("div", ["size-button", 'user-select-none']);
   const sizeCircle3 = createElement("div", ["size-circle"], 'L');
   const sizeLml = createElement("p", ['size-ml'], item.sizes.l.size);
 
@@ -157,15 +157,15 @@ function openModal(item) {
 
   const additivesButtons = createElement("div", ["additives-buttons"]);
 
-  const additivesButton1 = createElement("div", ["additives-button"]);
+  const additivesButton1 = createElement("div", ["additives-button", 'user-select-none']);
   const additivesCircle1 = createElement("div", ['additives-circle'], '1');
   const additivesSugar = createElement("p", ['additives-elements'], item.additives[0].name);
 
-  const additivesButton2 = createElement("div", ["additives-button"]);
+  const additivesButton2 = createElement("div", ["additives-button", 'user-select-none']);
   const additivesCircle2 = createElement("div", ["additives-circle"], '2');
   const additivesCin = createElement("p", ['additives-elements'], item.additives[1].name);
 
-  const additivesButton3 = createElement("div", ["additives-button"]);
+  const additivesButton3 = createElement("div", ["additives-button", 'user-select-none']);
   const additivesCircle3 = createElement("div", ["additives-circle"], '3');
   const additivesSy = createElement("p", ['additives-elements'], item.additives[2].name);
 
