@@ -17,7 +17,7 @@ const categories = [
 let activeTab = null;
 
 categories.forEach((category, index) => {
-  const tabLink = createElement('a', ['tabs-link']);
+  const tabLink = createElement('a', ['tabs-link', 'user-select-none']);
   if (index === 0) {
     tabLink.classList.add('tab-active');
     activeTab = tabLink;
