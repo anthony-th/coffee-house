@@ -1,58 +1,31 @@
+import { createElement } from '../common/createElement';
 import dataProductsJson from '../data/products.json';
 import { checkWidth, menu } from './header';
 
-export const menuSection = document.createElement('section');
-menuSection.classList.add('section', 'menu-section');
+export const menuSection = createElement('section', ['section', 'menu-section']); 
 
-const manuTabs = document.createElement('div');
-manuTabs.classList.add('menu-tabs');
+const manuTabs = createElement('div', ['menu-tabs']);
 
-const manuTitle = document.createElement('h1');
-manuTitle.classList.add('title');
-manuTitle.innerHTML = `Behind each of our cups hides an <span class="italic-accent">amazing surprise</span>`;
+const manuTitle = createElement('h1', ['title'], `Behind each of our cups hides an <span class="italic-accent">amazing surprise</span>`, {}, true);
+const tabsList = createElement('div', ['tabs-list']);
 
-const tabsList = document.createElement('div');
-tabsList.classList.add('tabs-list');
+const tabsLink1 = createElement('a', ['tabs-link', 'tab-active']);
+const tabsLink1Iconblock = createElement('div', ['link-block']);
+const tabsLink1Icon = createElement('img', ['link-icon'], '', { src: './assets/img/cof.png', alt: '' });
+const tabsLink1Text = createElement('p', ['link-text'], 'Coffee');
 
-const tabsLink1 = document.createElement('a');
-tabsLink1.classList.add('tabs-link', 'tab-active');
-const tabsLink1Iconblock = document.createElement('div');
-tabsLink1Iconblock.classList.add('link-block');
-const tabsLink1Icon = document.createElement('img');
-tabsLink1Icon.classList.add('link-icon');
-tabsLink1Icon.src = './assets/img/cof.png';
-tabsLink1Icon.alt = '';
-const tabsLink1Text = document.createElement('p');
-tabsLink1Text.classList.add('link-text');
-tabsLink1Text.textContent = 'Coffee';
+const tabsLink2 = createElement('a', ['tabs-link']);
+const tabsLink2Iconblock = createElement('div', ['link-block']);
+const tabsLink2Icon = createElement('img', ['link-icon'], '', { src: './assets/img/tee.png', alt: '' });
+const tabsLink2Text = createElement('p', ['link-text'], 'Tea');
 
-const tabsLink2 = document.createElement('a');
-tabsLink2.classList.add('tabs-link');
-const tabsLink2Iconblock = document.createElement('div');
-tabsLink2Iconblock.classList.add('link-block');
-const tabsLink2Icon = document.createElement('img');
-tabsLink2Icon.classList.add('link-icon');
-tabsLink2Icon.src = './assets/img/tee.png';
-tabsLink2Icon.alt = '';
-const tabsLink2Text = document.createElement('p');
-tabsLink2Text.classList.add('link-text');
-tabsLink2Text.textContent = 'Tea';
+const tabsLink3 = createElement('a', ['tabs-link']);
+const tabsLink3Iconblock = createElement('div', ['link-block']);
+const tabsLink3Icon = createElement('img', ['link-icon'], '', { src: './assets/img/chees.png', alt: '' });
 
-const tabsLink3 = document.createElement('a');
-tabsLink3.classList.add('tabs-link');
-const tabsLink3Iconblock = document.createElement('div');
-tabsLink3Iconblock.classList.add('link-block');
-const tabsLink3Icon = document.createElement('img');
-tabsLink3Icon.classList.add('link-icon');
-tabsLink3Icon.src = './assets/img/chees.png';
-tabsLink3Icon.alt = '';
+const tabsLink3Text = createElement('p', ['link-text'], 'Dessert');
 
-const tabsLink3Text = document.createElement('p');
-tabsLink3Text.classList.add('link-text');
-tabsLink3Text.textContent = 'Dessert';
-
-const manuList = document.createElement('div');
-manuList.classList.add('menu-list');
+const manuList = createElement('div', ['menu-list']);
 
 let initialQuantityProducts;
 const cardVisible = [];
@@ -63,25 +36,13 @@ function filterProducts(category) {
   const filterProduct = dataProductsJson.filter((el) => el.category === category);
   initialQuantityProducts = filterProduct.length;
   filterProduct.forEach((item) => {
-    const menuListItem = document.createElement('div');
-    menuListItem.classList.add('card', 'cursor-pointer');
-    const listImgWrapper = document.createElement('div');
-    listImgWrapper.classList.add('item-wrapper');
-    const listItemImg = document.createElement('img');
-    listItemImg.classList.add('item-img');
-    listItemImg.alt = '';
-    listItemImg.src = item.img;
-    const listTextWrapper = document.createElement('div');
-    listTextWrapper.classList.add('text-wrapper');
-    const listItemTitle = document.createElement('h3');
-    listItemTitle.classList.add('item-title');
-    listItemTitle.textContent = item.name;
-    const listItemText = document.createElement('p');
-    listItemText.classList.add('item-text');
-    listItemText.textContent = item.description;
-    const listItemPrice = document.createElement('h4');
-    listItemPrice.classList.add('item-price');
-    listItemPrice.textContent = `$${item.price}`;
+    const menuListItem = createElement('div', ['card', 'cursor-pointer']);
+    const listImgWrapper = createElement('div', ['item-wrapper']);
+    const listItemImg = createElement('img', ['item-img'], '', { src: item.img, alt: '' });
+    const listTextWrapper = createElement('div', ['text-wrapper']);
+    const listItemTitle = createElement('h3', ['item-title'], item.name);
+    const listItemText = createElement('p', ['item-text'], item.description);
+    const listItemPrice = createElement('h4', ['item-price'], `$${item.price}`);
   
     listTextWrapper.append(listItemTitle, listItemText, listItemPrice);
     listImgWrapper.append(listItemImg);
@@ -96,13 +57,12 @@ function filterProducts(category) {
   });
 }
 
-const tabsReload = document.createElement('div');
-tabsReload.classList.add('tabs-reload', 'cursor-pointer');
-const svgReload =  document.createElement('svg');
-svgReload.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+const tabsReload = createElement('div', ['tabs-reload', 'cursor-pointer']);
+const svgReload =  createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path d="M21.8883 13.5C21.1645 18.3113 17.013 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C16.1006 2 19.6248 4.46819 21.1679 8" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
+</svg>`, {}, true);
+
 
 function tabslinkOne() {
   tabsLink1.classList.add('tab-active');
@@ -177,112 +137,57 @@ checkInnerWidthForTabReload();
 window.onresize = resizeWin;
 
 function openModal(item) {
-  const shadow = document.createElement('div');
-  shadow.classList.add('modal-shadow');
+  const shadow = createElement('div', ['modal-shadow']);
 
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  const blockImage = document.createElement("div");
-  blockImage.classList.add("modal-image-block");
-  const modalImage = document.createElement("img");
-  modalImage.classList.add("modal-image");
-  modalImage.src = item.img;
+  const modal = createElement('div', ['modal']);
+  const blockImage = createElement("div", ["modal-image-block"]);
+  const modalImage = createElement("img", ["modal-image"], '', { src: item.img });
 
-  const blockText = document.createElement("div");
-  blockText.classList.add("modal-text-block");
-  const titleBlock = document.createElement("div");
-  titleBlock.classList.add("title-block");
-  const title = document.createElement("h2");
-  title.classList.add("title-modal");
-  title.textContent = item.name;
-  const subTitle = document.createElement("p");
-  subTitle.classList.add("modal-description");
-  subTitle.textContent = item.description;
-  const sizeBlock = document.createElement("div");
-  sizeBlock.classList.add("size-block");
-  const sizeTitle = document.createElement("p");
-  sizeTitle.classList.add("size-title");
-  sizeTitle.textContent = 'Size';
-  const sizeButtons = document.createElement("div");
-  sizeButtons.classList.add("size-buttons");
+  const blockText = createElement("div", ["modal-text-block"]);
+  const titleBlock = createElement("div", ["title-block"]);
+  const title = createElement("h2", ["title-modal"], item.name);
+  const subTitle = createElement("p", ["modal-description"], item.description);
+  const sizeBlock = createElement("div", ["size-block"]);
+  const sizeTitle = createElement("p", ["size-title"], 'Size');
+  const sizeButtons = createElement("div", ["size-buttons"]);
 
-  const sizeButton1 = document.createElement("div");
-  sizeButton1.classList.add("size-button", "size-button-active");
-  const sizeCircle1 = document.createElement("div");
-  sizeCircle1.classList.add('size-circle');
-  sizeCircle1.textContent = 'S';
-  const sizeSml = document.createElement("p");
-  sizeSml.classList.add('size-ml');
-  sizeSml.textContent = item.sizes.s.size;
+  const sizeButton1 = createElement("div", ["size-button", "size-button-active"]);
+  const sizeCircle1 = createElement("div", ['size-circle'], 'S');
+  const sizeSml = createElement("p", ['size-ml'], item.sizes.s.size);
 
-  const sizeButton2 = document.createElement("div");
-  sizeButton2.classList.add("size-button");
-  const sizeCircle2 = document.createElement("div");
-  sizeCircle2.classList.add("size-circle");
-  sizeCircle2.textContent = 'M';
-  const sizeMml = document.createElement("p");
-  sizeMml.classList.add('size-ml');
-  sizeMml.textContent = item.sizes.m.size;
+  const sizeButton2 = createElement("div", ["size-button"]);
+  const sizeCircle2 = createElement("div", ["size-circle"], 'M');
+  const sizeMml = createElement("p", ['size-ml'], item.sizes.m.size);
 
-  const sizeButton3 = document.createElement("div");
-  sizeButton3.classList.add("size-button");
-  const sizeCircle3 = document.createElement("div");
-  sizeCircle3.classList.add("size-circle");
-  sizeCircle3.textContent = 'L';
-  const sizeLml = document.createElement("p");
-  sizeLml.classList.add('size-ml');
-  sizeLml.textContent = item.sizes.l.size;
+  const sizeButton3 = createElement("div", ["size-button"]);
+  const sizeCircle3 = createElement("div", ["size-circle"], 'L');
+  const sizeLml = createElement("p", ['size-ml'], item.sizes.l.size);
 
-  const additives = document.createElement("div");
-  additives.classList.add("additives");
-  const additivesTitle = document.createElement("p");
-  additivesTitle.classList.add("additives-title");
-  additivesTitle.textContent = 'Additives';
+  const additives = createElement("div", ["additives"]);
+  const additivesTitle = createElement("p", ['additives-title'], 'Additives');
 
-  const additivesButtons = document.createElement("div");
-  additivesButtons.classList.add("additives-buttons");
+  const additivesButtons = createElement("div", ["additives-buttons"]);
 
-  const additivesButton1 = document.createElement("div");
-  additivesButton1.classList.add("additives-button");
-  const additivesCircle1 = document.createElement("div");
-  additivesCircle1.classList.add("additives-circle");
-  additivesCircle1.textContent = '1';
-  const additivesSugar = document.createElement("p");
-  additivesSugar.classList.add('additives-elements');
-  additivesSugar.textContent = item.additives[0].name;
+  const additivesButton1 = createElement("div", ["additives-button"]);
+  const additivesCircle1 = createElement("div", ['additives-circle'], '1');
+  const additivesSugar = createElement("p", ['additives-elements'], item.additives[0].name);
 
-  const additivesButton2 = document.createElement("div");
-  additivesButton2.classList.add("additives-button");
-  const additivesCircle2 = document.createElement("div");
-  additivesCircle2.classList.add("additives-circle");
-  additivesCircle2.textContent = '2';
-  const additivesCin = document.createElement("p");
-  additivesCin.classList.add('additives-elements');
-  additivesCin.textContent = item.additives[1].name;
+  const additivesButton2 = createElement("div", ["additives-button"]);
+  const additivesCircle2 = createElement("div", ["additives-circle"], '2');
+  const additivesCin = createElement("p", ['additives-elements'], item.additives[1].name);
 
-  const additivesButton3 = document.createElement("div");
-  additivesButton3.classList.add("additives-button");
-  const additivesCircle3 = document.createElement("div");
-  additivesCircle3.classList.add("additives-circle");
-  additivesCircle3.textContent = '3';
-  const additivesSy = document.createElement("p");
-  additivesSy.classList.add('additives-elements');
-  additivesSy.textContent = item.additives[2].name;
+  const additivesButton3 = createElement("div", ["additives-button"]);
+  const additivesCircle3 = createElement("div", ["additives-circle"], '3');
+  const additivesSy = createElement("p", ['additives-elements'], item.additives[2].name);
 
   document.body.classList.add('overflow-hidden');
 
-  const totalBlock = document.createElement("div");
-  totalBlock.classList.add("total-block");
-  const totalText = document.createElement("p");
-  totalText.classList.add("total-text");
-  totalText.textContent = 'Total:';
-  const totalPrice = document.createElement("p");
-  totalPrice.classList.add("total-price");
+  const totalBlock = createElement("div", ["total-block"]);
+  const totalText = createElement("p", ["total-text"], 'Total:');
+  const totalPrice = createElement("p", ["total-price"]);
 
-  const alertBlock = document.createElement("div");
-  alertBlock.classList.add("alert-block");
-  const alertSvg = document.createElement("svg");
-  alertSvg.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  const alertBlock = createElement("div", ["alert-block"]);
+  const alertSvg = createElement("svg", [], `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <g clip-path="url(#clip0_268_12877)">
     <path d="M8 7.66663V11" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M8 5.00667L8.00667 4.99926" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
@@ -293,14 +198,11 @@ function openModal(item) {
       <rect width="16" height="16" fill="white"/>
     </clipPath>
   </defs>
-  </svg>`;
-  const alertTitle = document.createElement("p");
-  alertTitle.classList.add("alert-title");
-  alertTitle.textContent = 'The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.';
+  </svg>`, {}, true);
+  const alertTitle = createElement("p", ["alert-title"], 'The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.');
 
-  const closeButton = document.createElement("button");
-  closeButton.classList.add("button-close");
-  closeButton.textContent = 'Close';
+  const closeButton = createElement("button", ['button-close'], 'Close');
+
   closeButton.onclick = function() {
     closeModal();
   };
