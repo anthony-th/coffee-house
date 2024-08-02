@@ -14,9 +14,14 @@ const categories = [
   { name: 'Dessert', icon: './assets/img/chees.png', filter: 'dessert' }
 ];
 
+let activeTab = null;
+
 categories.forEach((category, index) => {
   const tabLink = createElement('a', ['tabs-link']);
-  if (index === 0) tabLink.classList.add('tab-active');
+  if (index === 0) {
+    tabLink.classList.add('tab-active');
+    activeTab = tabLink;
+  }
   const tabIconBlock = createElement('div', ['link-block']);
   const tabIcon = createElement('img', ['link-icon'], '', { src: category.icon, alt: '' });
   const tabText = createElement('p', ['link-text'], category.name);
@@ -26,8 +31,11 @@ categories.forEach((category, index) => {
   tabsList.append(tabLink);
 
   tabLink.onclick = () => {
-    document.querySelectorAll('.tabs-link').forEach(link => link.classList.remove('tab-active'));
+    if (activeTab) {
+      activeTab.classList.remove('tab-active');
+    }
     tabLink.classList.add('tab-active');
+    activeTab = tabLink;
     filterProducts(category.filter);
     checkInnerWidthForTabReload();
     showCards();
@@ -38,7 +46,7 @@ const manuList = createElement('div', ['menu-list']);
 
 let initialQuantityProducts;
 const cardVisible = [];
-let visibleCardsCount = window.innerWidth <= 768 ? 4 : 8;
+let visibleCardsCount = window.innerWidth <= 768 ? 4 : 8; 
 
 function filterProducts(category) {
   cardVisible.length = 0;
@@ -83,7 +91,7 @@ function tabsReloadRotate() {
   svgReload.classList.add('rotate360');
 }
 
-tabsReload.addEventListener('animationend', function() {
+tabsReload.addEventListener('animationend', () => {
   svgReload.classList.remove('rotate360');
     if (visibleCardsCount < initialQuantityProducts) {
     cardVisible.forEach((card) => {
