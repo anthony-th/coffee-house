@@ -5,56 +5,70 @@ import { checkWidth, menu } from './header';
 export const menuSection = createElement('section', ['section', 'menu-section']); 
 
 const manuTabs = createElement('div', ['menu-tabs']);
-
 const manuTitle = createElement('h1', ['title'], `Behind each of our cups hides an <span class="italic-accent">amazing surprise</span>`, {}, true);
 const tabsList = createElement('div', ['tabs-list']);
 
-const tabsLink1 = createElement('a', ['tabs-link', 'tab-active']);
-const tabsLink1Iconblock = createElement('div', ['link-block']);
-const tabsLink1Icon = createElement('img', ['link-icon'], '', { src: './assets/img/cof.png', alt: '' });
-const tabsLink1Text = createElement('p', ['link-text'], 'Coffee');
+const categories = [
+  { name: 'Coffee', icon: './assets/img/cof.png', filter: 'coffee' },
+  { name: 'Tea', icon: './assets/img/tee.png', filter: 'tea' },
+  { name: 'Dessert', icon: './assets/img/chees.png', filter: 'dessert' }
+];
 
-const tabsLink2 = createElement('a', ['tabs-link']);
-const tabsLink2Iconblock = createElement('div', ['link-block']);
-const tabsLink2Icon = createElement('img', ['link-icon'], '', { src: './assets/img/tee.png', alt: '' });
-const tabsLink2Text = createElement('p', ['link-text'], 'Tea');
+categories.forEach((category, index) => {
+  const tabLink = createElement('a', ['tabs-link']);
+  if (index === 0) tabLink.classList.add('tab-active');
+  const tabIconBlock = createElement('div', ['link-block']);
+  const tabIcon = createElement('img', ['link-icon'], '', { src: category.icon, alt: '' });
+  const tabText = createElement('p', ['link-text'], category.name);
+  
+  tabIconBlock.append(tabIcon);
+  tabLink.append(tabIconBlock, tabText);
+  tabsList.append(tabLink);
 
-const tabsLink3 = createElement('a', ['tabs-link']);
-const tabsLink3Iconblock = createElement('div', ['link-block']);
-const tabsLink3Icon = createElement('img', ['link-icon'], '', { src: './assets/img/chees.png', alt: '' });
+  tabLink.onclick = () => {
+    document.querySelectorAll('.tabs-link').forEach(link => link.classList.remove('tab-active'));
+    tabLink.classList.add('tab-active');
+    filterProducts(category.filter);
+    checkInnerWidthForTabReload();
+    showCards();
+  };
+});
 
-const tabsLink3Text = createElement('p', ['link-text'], 'Dessert');
-
-const manuList = createElement('div', ['menu-list']);
+const manuList = createElement('div', ['menu-list']); 
 
 let initialQuantityProducts;
 const cardVisible = [];
+let visibleCardsCount = window.innerWidth <= 768 ? 4 : 8;
 
-function filterProducts(category) { 
+function filterProducts(category) {
   cardVisible.length = 0;
   manuList.innerHTML = '';
-  const filterProduct = dataProductsJson.filter((el) => el.category === category);
-  initialQuantityProducts = filterProduct.length;
-  filterProduct.forEach((item) => {
-    const menuListItem = createElement('div', ['card', 'cursor-pointer']);
-    const listImgWrapper = createElement('div', ['item-wrapper']);
-    const listItemImg = createElement('img', ['item-img'], '', { src: item.img, alt: '' });
-    const listTextWrapper = createElement('div', ['text-wrapper']);
-    const listItemTitle = createElement('h3', ['item-title'], item.name);
-    const listItemText = createElement('p', ['item-text'], item.description);
-    const listItemPrice = createElement('h4', ['item-price'], `$${item.price}`);
-  
-    listTextWrapper.append(listItemTitle, listItemText, listItemPrice);
-    listImgWrapper.append(listItemImg);
-    menuListItem.append(listImgWrapper, listTextWrapper);
+  const filteredProducts = dataProductsJson.filter(el => el.category === category);
+  initialQuantityProducts = filteredProducts.length;
+
+  filteredProducts.forEach(item => {
+    const menuListItem = createMenuItem(item);
     manuList.append(menuListItem);
-
-    menuListItem.onclick = function() {
-      openModal(item);
-    };
-
     cardVisible.push(menuListItem);
   });
+}
+
+function createMenuItem(item) {
+  const menuListItem = createElement('div', ['card', 'cursor-pointer']);
+  const listImgWrapper = createElement('div', ['item-wrapper']);
+  const listItemImg = createElement('img', ['item-img'], '', { src: item.img, alt: '' });
+  const listTextWrapper = createElement('div', ['text-wrapper']);
+  const listItemTitle = createElement('h3', ['item-title'], item.name);
+  const listItemText = createElement('p', ['item-text'], item.description);
+  const listItemPrice = createElement('h4', ['item-price'], `$${item.price}`);
+
+  listTextWrapper.append(listItemTitle, listItemText, listItemPrice);
+  listImgWrapper.append(listItemImg);
+  menuListItem.append(listImgWrapper, listTextWrapper);
+
+  menuListItem.onclick = () => openModal(item);
+
+  return menuListItem;
 }
 
 const tabsReload = createElement('div', ['tabs-reload', 'cursor-pointer']);
@@ -63,37 +77,6 @@ const svgReload =  createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/
 <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, {}, true);
 
-
-function tabslinkOne() {
-  tabsLink1.classList.add('tab-active');
-  tabsLink2.classList.remove('tab-active');
-  tabsLink3.classList.remove('tab-active');
-  filterProducts('coffee');
-  checkInnerWidthForTabReload();
-  showCards();
-}
-
-function tabslinkTwo() {
-  tabsLink1.classList.remove('tab-active');
-  tabsLink2.classList.add('tab-active');
-  tabsLink3.classList.remove('tab-active');
-  filterProducts('tea');
-  checkInnerWidthForTabReload();
-  showCards();
-}
-
-function tabslinkThree() {
-  tabsLink1.classList.remove('tab-active');
-  tabsLink2.classList.remove('tab-active');
-  tabsLink3.classList.add('tab-active');
-  filterProducts('dessert');
-  checkInnerWidthForTabReload();
-  showCards();
-}
-
-tabsLink1.onclick = tabslinkOne;
-tabsLink2.onclick = tabslinkTwo;
-tabsLink3.onclick = tabslinkThree;
 tabsReload.onclick = tabsReloadRotate;
 
 function tabsReloadRotate() {
@@ -109,8 +92,6 @@ tabsReload.addEventListener('animationend', function() {
     });
   }
 });
-
-let visibleCardsCount = window.innerWidth <= 768 ? 4 : 8;
 
 function showCards() {
   cardVisible.forEach((card, index) => {
@@ -203,13 +184,8 @@ function openModal(item) {
 
   const closeButton = createElement("button", ['button-close'], 'Close');
 
-  closeButton.onclick = function() {
-    closeModal();
-  };
-
-  shadow.onclick = function() {
-    closeModal();
-  };
+  closeButton.onclick = closeModal;
+  shadow.onclick = closeModal;
 
   function closeModal() {
     modal.remove();
@@ -324,14 +300,6 @@ function openModal(item) {
   manuList.append(shadow, modal);  
 }
 
-
 tabsReload.append(svgReload);
-tabsLink1Iconblock.append(tabsLink1Icon);
-tabsLink2Iconblock.append(tabsLink2Icon);
-tabsLink3Iconblock.append(tabsLink3Icon);
-tabsLink1.append(tabsLink1Iconblock, tabsLink1Text);
-tabsLink2.append(tabsLink2Iconblock, tabsLink2Text);
-tabsLink3.append(tabsLink3Iconblock, tabsLink3Text);
-tabsList.append(tabsLink1, tabsLink2, tabsLink3);
 manuTabs.append(manuTitle, tabsList);
 menuSection.append(manuTabs, manuList, tabsReload);
