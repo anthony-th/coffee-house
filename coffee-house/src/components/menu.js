@@ -140,34 +140,64 @@ function openModal(item) {
   const sizeTitle = createElement("p", ["size-title"], 'Size');
   const sizeButtons = createElement("div", ["size-buttons"]);
 
-  const sizeButton1 = createElement("div", ["size-button", 'user-select-none', "size-button-active"]);
-  const sizeCircle1 = createElement("div", ['size-circle'], 'S');
-  const sizeSml = createElement("p", ['size-ml'], item.sizes.s.size);
+  const sizes = [
+    { label: 'S', addprice: item.sizes.s.addprice, size: item.sizes.s.size },
+    { label: 'M', addprice: item.sizes.m.addprice, size: item.sizes.m.size },
+    { label: 'L', addprice: item.sizes.l.addprice, size: item.sizes.l.size }
+  ];
+  
+  let selectSize = sizes[0].addprice;
+  let activeSizeButton = null;
+  
+  sizes.forEach((size, index) => {
+    const sizeButton = createElement('div', ['size-button', 'user-select-none']);
+    if (index === 0) {
+      sizeButton.classList.add('size-button-active');
+      activeSizeButton = sizeButton;
+    }
+    const sizeCircle = createElement('div', ['size-circle'], size.label);
+    const sizeText = createElement('p', ['size-ml'], size.size);
+    
+    sizeButton.append(sizeCircle, sizeText);
+    sizeButtons.append(sizeButton);
 
-  const sizeButton2 = createElement("div", ["size-button", 'user-select-none']);
-  const sizeCircle2 = createElement("div", ["size-circle"], 'M');
-  const sizeMml = createElement("p", ['size-ml'], item.sizes.m.size);
-
-  const sizeButton3 = createElement("div", ["size-button", 'user-select-none']);
-  const sizeCircle3 = createElement("div", ["size-circle"], 'L');
-  const sizeLml = createElement("p", ['size-ml'], item.sizes.l.size);
+    sizeButton.onclick = () => {
+      if (activeSizeButton) {
+        activeSizeButton.classList.remove('size-button-active');
+      }
+      sizeButton.classList.add('size-button-active');
+      activeSizeButton = sizeButton;
+      selectSize = size.addprice;
+      updateTotalPrice();
+    };
+  });
 
   const additives = createElement("div", ["additives"]);
   const additivesTitle = createElement("p", ['additives-title'], 'Additives');
-
   const additivesButtons = createElement("div", ["additives-buttons"]);
 
-  const additivesButton1 = createElement("div", ["additives-button", 'user-select-none']);
-  const additivesCircle1 = createElement("div", ['additives-circle'], '1');
-  const additivesSugar = createElement("p", ['additives-elements'], item.additives[0].name);
+  const additivesData = [
+    { label: '1', name: item.additives[0].name },
+    { label: '2', name: item.additives[1].name },
+    { label: '3', name: item.additives[2].name }
+  ];
 
-  const additivesButton2 = createElement("div", ["additives-button", 'user-select-none']);
-  const additivesCircle2 = createElement("div", ["additives-circle"], '2');
-  const additivesCin = createElement("p", ['additives-elements'], item.additives[1].name);
+  const additivesButtonsArr = [];
 
-  const additivesButton3 = createElement("div", ["additives-button", 'user-select-none']);
-  const additivesCircle3 = createElement("div", ["additives-circle"], '3');
-  const additivesSy = createElement("p", ['additives-elements'], item.additives[2].name);
+  additivesData.forEach((additive) => {
+    const additivesButton = createElement("div", ["additives-button", 'user-select-none']);
+    const additivesCircle = createElement("div", ['additives-circle'], additive.label);
+    const additivesText = createElement("p", ['additives-elements'], additive.name);
+
+    additivesButton.append(additivesCircle, additivesText);
+    additivesButtons.append(additivesButton);
+    additivesButtonsArr.push(additivesButton);
+
+    additivesButton.onclick = () => {
+      additivesButton.classList.toggle('additives-button-active');
+      updateSelectAdd();
+    };
+  })
 
   document.body.classList.add('overflow-hidden');
 
@@ -201,83 +231,20 @@ function openModal(item) {
     document.body.classList.remove('overflow-hidden');
   }
 
-  let selectSize = item.sizes.s.addprice;
-  let selectAddPrice = 0;
+  let selectAddPrice = null;
 
-  sizeButton1.onclick = sizeButton1Click;
-  sizeButton2.onclick = sizeButton2Click;
-  sizeButton3.onclick = sizeButton3Click;
-  function sizeButton1Click() {
-    if (!sizeButton1.classList.contains('size-button-active')) {
-      sizeButton1.classList.add('size-button-active');
-      sizeButton2.classList.remove('size-button-active');
-      sizeButton3.classList.remove('size-button-active');
-      selectSize = item.sizes.s.addprice;
-      updateTotalPrice();
-    }
-  }
-
-  function sizeButton2Click() {
-    if (!sizeButton2.classList.contains('size-button-active')) {
-      sizeButton2.classList.add('size-button-active');
-      sizeButton1.classList.remove('size-button-active');
-      sizeButton3.classList.remove('size-button-active');
-      selectSize = item.sizes.m.addprice;
-      updateTotalPrice();
-    }
-  }
-  function sizeButton3Click() {
-    if (!sizeButton3.classList.contains('size-button-active')) {
-      sizeButton3.classList.add('size-button-active');
-      sizeButton1.classList.remove('size-button-active');
-      sizeButton2.classList.remove('size-button-active');
-      selectSize = item.sizes.l.addprice;
-      updateTotalPrice();
-    }
-  }
-
-  additivesButton1.onclick = additivesButton1Click;
-  additivesButton2.onclick = additivesButton2Click;
-  additivesButton3.onclick = additivesButton3Click;
-
-  function additivesButton1Click() {
-    additivesButton1.classList.toggle('additives-button-active');
-    updateSelectAdd();
-  }
-  function additivesButton2Click() {
-    additivesButton2.classList.toggle('additives-button-active');
-    updateSelectAdd();
-  }
-  function additivesButton3Click() {
-    additivesButton3.classList.toggle('additives-button-active');
-    updateSelectAdd();
-  }
-
-  additivesButtons.append(additivesButton1, additivesButton2, additivesButton3);
-  additivesButton1.append(additivesCircle1, additivesSugar);
-  additivesButton2.append(additivesCircle2, additivesCin);
-  additivesButton3.append(additivesCircle3, additivesSy);
   additives.append(additivesTitle, additivesButtons);
-
-  sizeButton1.append(sizeCircle1, sizeSml);
-  sizeButton2.append(sizeCircle2, sizeMml);
-  sizeButton3.append(sizeCircle3, sizeLml);
-  sizeButtons.append(sizeButton1, sizeButton2, sizeButton3);
   sizeBlock.append(sizeTitle, sizeButtons);
   titleBlock.append(title, subTitle);
-
   totalBlock.append(totalText, totalPrice);
-
   alertBlock.append(alertSvg, alertTitle);
 
   let selectAddArray = [];
 
   function updateSelectAdd() {
     selectAddArray = [];
-    const additivesButtonsArr = [additivesButton1, additivesButton2, additivesButton3];
-
-    additivesButtonsArr.forEach((el, index) => {
-      if (el.classList.contains('additives-button-active')) {
+    additivesButtonsArr.forEach((button, index) => {
+      if (button.classList.contains('additives-button-active')) {
         selectAddArray.push(item.additives[index]);
       }
     });
