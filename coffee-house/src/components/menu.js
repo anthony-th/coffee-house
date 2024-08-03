@@ -2,8 +2,7 @@ import { createElement } from '../common/createElement';
 import dataProductsJson from '../data/products.json';
 import { checkWidth, menu } from './header';
 
-export const menuSection = createElement('section', ['section', 'menu-section']); 
-
+export const menuSection = createElement('section', ['section', 'menu-section']);
 const manuTabs = createElement('div', ['menu-tabs']);
 const manuTitle = createElement('h1', ['title'], `Behind each of our cups hides an <span class="italic-accent">amazing surprise</span>`, {}, true);
 const tabsList = createElement('div', ['tabs-list']);
@@ -127,11 +126,9 @@ window.onresize = resizeWin;
 
 function openModal(item) {
   const shadow = createElement('div', ['modal-shadow']);
-
   const modal = createElement('div', ['modal']);
   const blockImage = createElement("div", ["modal-image-block"]);
   const modalImage = createElement("img", ["modal-image"], '', { src: item.img });
-
   const blockText = createElement("div", ["modal-text-block"]);
   const titleBlock = createElement("div", ["title-block"]);
   const title = createElement("h2", ["title-modal"], item.name);
@@ -204,7 +201,6 @@ function openModal(item) {
   const totalBlock = createElement("div", ["total-block"]);
   const totalText = createElement("p", ["total-text"], 'Total:');
   const totalPrice = createElement("p", ["total-price"]);
-
   const alertBlock = createElement("div", ["alert-block"]);
   const alertSvg = createElement("svg", [], `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <g clip-path="url(#clip0_268_12877)">
@@ -219,7 +215,6 @@ function openModal(item) {
   </defs>
   </svg>`, {}, true);
   const alertTitle = createElement("p", ["alert-title"], 'The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.');
-
   const closeButton = createElement("button", ['button-close'], 'Close');
 
   closeButton.onclick = closeModal;
