@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 body {
   background: $text-light;
   min-width: 380px;

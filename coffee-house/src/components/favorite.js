@@ -15,7 +15,7 @@ const allSliders = [];
 let startSlider = 0;
 let autoScrollInterval;
 let pause = false;
-let intervalTime = 6900 / 1000;
+let intervalTime = 6900;
 let mouseOverTime = 0;
 let pauseInterval = 0;
 let pauseStopInterval;
