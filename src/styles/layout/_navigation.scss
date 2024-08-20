@@ -1,0 +1,48 @@
+@use '../abstracts' as *;
+
+header {
+  .nav {
+    @include flex(center);
+    .list {
+      display: flex;
+      gap: 40px;
+      .list-item {
+        list-style: none;
+        .item-link {
+          color: $dark;
+          &:visited {
+            color: $dark;
+          }
+        }
+      }
+      &.toggle-menu {
+        right: 0;
+      }
+    }
+    .burger {
+      @include flex(center, center, column, none);
+      width: 44px;
+      height: 44px;
+      border-radius: 100px;
+      border: 1px solid $gray;
+      gap: 8px;
+      .burger-line {
+        width: 16px;
+        height: 1.4px;
+        background-color: $gray;
+        border-radius: 2px;
+        border: none;
+        &:first-child {
+          &.rotate-plus {
+            transform: rotate(45deg) translate(3px, 3.5px);
+          }
+        }
+        &:last-child {
+          &.rotate-minus {
+            transform: rotate(-45deg) translate(3px, -3.5px);
+          }
+        }
+      }
+    }
+  }
+}
