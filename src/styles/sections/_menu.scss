@@ -2,33 +2,24 @@
 
 .menu-section {
   max-width: 1360px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(center, center, column);
   gap: 39px;
   .menu-tabs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex(center, normal, column);
     gap: 40px;
     .title {
       max-width: 800px;
       text-align: center;
     }
     .tabs-list {
-      display: flex;
+      @include flex(center, center);
       gap: 16px;
-      justify-content: center;
-      align-items: center;
     }
   }
   .menu-list {
-    display: flex;
+    @include flex(center, center);
     flex-wrap: wrap;
     gap: 40px;
-    justify-content: center;
-    align-items: center;
     .card {
       display: flex;
       flex-direction: column;
@@ -37,11 +28,9 @@
       border: 1px solid $accent-light;
       border-radius: 40px;
       .item-wrapper {
+        @include flex(center, center);
         border-radius: 40px;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         width: 310px;
         height: 310px;
       }
@@ -80,11 +69,9 @@
     }
   }
   .tabs-reload {
-    display: none;
+    @include flex(center, center, row, none);
     width: 60px;
     height: 60px;
-    justify-content: center;
-    align-items: center;
     border-radius: 100px;
     border: 1px solid $gray;
     svg {
@@ -95,27 +82,21 @@
 }
 
 .tabs-link {  
+  @include flex(center, center);
   border-radius: 100px;
-  display: flex;
   padding: 8px 16px 8px 8px;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
   background: transparent;
   border: 1px solid $accent-light;
   cursor: default;
   .link-block {
+    @include flex(center, center);
     width: 30px;
     height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: $accent-light;
     border-radius: 100px;
     .link-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex(center, center);
     }
   }
   .link-text {

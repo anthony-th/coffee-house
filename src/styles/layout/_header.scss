@@ -1,19 +1,16 @@
 @use '../abstracts' as *;
 
 .header {
-  display: flex;
   margin: 0 auto;
   max-width: 1440px;
   padding: 20px 40px;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(center, space-between);
   .logo {
     max-width: 100px;
     height: 60px;
   }
   .nav {
-    display: flex;
-    align-items: center;
+    @include flex(center);
     .list {
       display: flex;
       gap: 40px;
@@ -31,14 +28,11 @@
       }
     }
     .burger {
-      display: none;
+      @include flex(center, center, column, none);
       width: 44px;
       height: 44px;
-      justify-content: center;
-      align-items: center;
       border-radius: 100px;
       border: 1px solid $gray;
-      flex-direction: column;
       gap: 8px;
       .burger-line {
         width: 16px;
@@ -60,9 +54,9 @@
     }
   }
   .menu {
-    display: flex;
+    @include flex(flex-start);
     gap: 8px;
-    align-items: flex-start ;
+    align-items: flex-start;
     &.toggle-menu {
       right: calc(50% - 71.5px);
     }
@@ -96,40 +90,3 @@
     transition: all 0.3s ease-in-out;
   }
 }
-
-.header {
-  .nav {
-    .list {
-      &.burger-flex {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        right: 0;
-        top: 0;
-      }
-    }
-  }
-}
-
-// .header {
-//   .nav {
-//     .list {
-//       &.burger-flex {
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         position: fixed;
-//         width: 100%;
-//         height: 100vh;
-//         right: 0;
-//         top: 0;
-//       }
-//     }
-//     // &.position-burger {
-
-//     // }
-//   }
-// }

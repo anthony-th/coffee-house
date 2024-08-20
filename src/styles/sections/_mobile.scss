@@ -1,10 +1,8 @@
 @use '../abstracts' as *;
 
 .mobile-section {
+  @include flex(center, space-between);
   max-width: 1360px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   .mobile-block {
     max-width: 630px;
     width: 100%;

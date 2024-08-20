@@ -6,14 +6,11 @@
   max-width: 1360px;
   margin: 100px auto 40px;
   border-radius: 40px;
-  display: flex;
-  justify-content: space-between;
+  @include flex(normal, space-between);
   .footer-block {
     max-width: 530px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include flex(normal, center, column);
     gap: 39px;
     .left-title {
       font-family: Inter;
@@ -31,9 +28,7 @@
         height: 60px;
         border-radius: 100px;
         border: 1px solid $accent-light;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex(center, center);
       }
     }
   }
@@ -48,8 +43,7 @@
     }
     .contacts-list {
       list-style-type: none;
-      display: flex;
-      flex-direction: column;
+      @include flex(normal, center, column);
       gap: 20px;
       .contacts-link {
         display: flex;

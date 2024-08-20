@@ -31,9 +31,7 @@
       }
       .list {
         padding-top: 160px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @include flex(center, normal, column);
         position: fixed;
         width: 100%;
         height: 100%;

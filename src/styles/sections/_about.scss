@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .about-section {
   max-width: 1360px;
   display: flex;
@@ -5,17 +7,13 @@
   gap: 40px;
   .about-block {
     max-height: calc(590px + 40px + 430px);
-    display: flex;
-    flex-direction: column;
+    @include flex(center, normal, column);
     flex-wrap: wrap;
-    align-items: center;
     gap: 40px;
     .img-wrapper {
       overflow: hidden;
       border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex(center, center);
       max-width: 660px;
       .about-img {
         width: 100%;

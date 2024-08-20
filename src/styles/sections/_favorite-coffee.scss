@@ -2,28 +2,21 @@
 
 .favorite-section {
   max-width: 1360px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  @include flex(center, center, column);
   gap: 40px;
   .slider-block {
-    display: flex;
+    @include flex(center, space-between);
     gap: 40px;
-    align-items: center;
-    justify-content: space-between;
     max-width: 1360px;
     width: 100%;
     .arrow {
+      @include flex(center, center);
       border-radius: 100px;
       border: 1px solid $gray;
       width: 60px;
       height: 60px;
       min-height: 60px;
       min-width: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       svg {
         width: 24px;
         height: 24px;
@@ -34,16 +27,12 @@
       overflow: hidden;
       max-width: 480px;
       .slider {
+        @include flex(center, center, column);
         width: 100%;
         max-height: 640px;
         max-width: 480px;
-        display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
         gap: 20px;
-        justify-content: center;
-        align-items: center;
-
         .slider-img {
           width: 480px;
           height: 480px;
