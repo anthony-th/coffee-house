@@ -23,8 +23,8 @@ Make sure you have the following installed on your machine:
 
 1. Clone the Repository:
 ```bash
-git clone https://github.com/anthony-th/hangman.git
-cd hangman
+git clone https://github.com/anthony-th/coffee-house.git
+cd coffee-house
 ```
 2. Install the NPM packages in the project folder:
 ```bash
