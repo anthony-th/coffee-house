@@ -1,0 +1,86 @@
+@use '../abstracts' as *;
+
+.footer {
+  background-color: $gray;
+  padding: 100px;
+  max-width: 1360px;
+  margin: 100px auto 40px;
+  border-radius: 40px;
+  @include flex(normal, space-between);
+  .footer-block {
+    max-width: 530px;
+    width: 100%;
+    @include flex(normal, center, column);
+    gap: 39px;
+    .left-title {
+      font-family: Inter;
+      font-size: 60px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 125%;
+      color: $text-light;
+    }
+    .social-block {
+      display: flex;
+      gap: 12px;
+      .social-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 100px;
+        border: 1px solid $accent-light;
+        @include flex(center, center);
+      }
+    }
+  }
+  .right-block {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    color: $text-light;
+    .right-title {
+      font-size: 24px;
+      line-height: 125%;
+    }
+    .contacts-list {
+      list-style-type: none;
+      @include flex(normal, center, column);
+      gap: 20px;
+      .contacts-link {
+        display: flex;
+        gap: 8px;
+        position: relative;
+        width: max-content;
+        font-family: Inter;
+        &:visited {
+          color: $text-light;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          height: 2px;
+          background-color: $text-light;
+          width: 0;
+          left: 50%;
+          bottom: -5px;
+          transform: translateX(-50%);
+          z-index: 2;
+          transition: all 0.5s ease-in-out;
+        }
+        .address-link,
+        .tel-link,
+        .time-link {
+          display: flex;
+          align-items: center;
+          color: $text-light;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%;
+          &:visited {
+            color: $text-light;
+          }
+        }
+      }
+    }
+  }
+}

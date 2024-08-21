@@ -1,0 +1,110 @@
+@use '../abstracts' as *;
+
+.menu-section {
+  max-width: 1360px;
+  @include flex(center, center, column);
+  gap: 39px;
+  .menu-tabs {
+    @include flex(center, normal, column);
+    gap: 40px;
+    .title {
+      max-width: 800px;
+      text-align: center;
+    }
+    .tabs-list {
+      @include flex(center, center);
+      gap: 16px;
+    }
+  }
+  .menu-list {
+    @include flex(center, center);
+    flex-wrap: wrap;
+    gap: 40px;
+    .card {
+      display: flex;
+      flex-direction: column;
+      width: 310px;
+      height: 506px;
+      border: 1px solid $accent-light;
+      border-radius: 40px;
+      .item-wrapper {
+        @include flex(center, center);
+        border-radius: 40px;
+        overflow: hidden;
+        width: 310px;
+        height: 310px;
+      }
+      .text-wrapper {
+        padding: 20px;
+        position: relative;
+        font-family: Inter;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%;
+        color: $dark;
+        height: 196px;
+        .item-img {
+          scale: 1.05;
+        }
+        .item-title {
+          font-family: Inter;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 125%;
+          margin-bottom: 12px;
+        }
+        .item-text {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 150%;
+        }
+        .item-price {
+          position: absolute;
+          left: 20px;
+          bottom: 20px;
+        }
+      }
+    }
+  }
+  .tabs-reload {
+    @include flex(center, center, row, none);
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    border: 1px solid $gray;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.tabs-link {  
+  @include flex(center, center);
+  border-radius: 100px;
+  padding: 8px 16px 8px 8px;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid $accent-light;
+  cursor: default;
+  .link-block {
+    @include flex(center, center);
+    width: 30px;
+    height: 30px;
+    background: $accent-light;
+    border-radius: 100px;
+    .link-icon {
+      @include flex(center, center);
+    }
+  }
+  .link-text {
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    color: $dark;
+  }
+}

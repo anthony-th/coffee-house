@@ -1,0 +1,48 @@
+@use '../abstracts' as *;
+
+.header {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 20px 40px;
+  @include flex(center, space-between);
+  .logo {
+    max-width: 100px;
+    height: 60px;
+  }
+  .menu {
+    @include flex(flex-start);
+    gap: 8px;
+    align-items: flex-start;
+    &.toggle-menu {
+      right: calc(50% - 71.5px);
+    }
+  }
+}
+
+.list-item,
+.menu {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  position: relative;
+  .menu-link {
+    color: $dark;
+    &:visited {
+      color: $dark;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background-color: $dark;
+    width: 0;
+    left: 50%;
+    bottom: -2px;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+  }
+}
