@@ -4,7 +4,7 @@ import sliderJson from '../data/slider.json';
 export const favoriteSection = createElement('section', ['section', 'favorite-section'], '', { id: 'favorite'});
 const favoriteTitle = createElement('h2', ['title'], `Choose your <span class="italic-accent">favorite</span> coffee`, {}, true);
 const favoriteSliderWrapper = createElement('div', ['slider-block']);
-const favoriteArrowLeft = createElement('a', ['arrow', 'cursor-pointer']);
+const favoriteArrowLeft = createElement('button', ['arrow', 'cursor-pointer']);
 const arrowLeftIcon = createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, {}, true);
@@ -118,7 +118,7 @@ const swipe = () => {
   touchFingerEnd = 0;
 }
 
-const favoriteArrowRight = createElement('a', ['arrow', 'cursor-pointer']);
+const favoriteArrowRight = createElement('button', ['arrow', 'cursor-pointer']);
 const arrowRightIcon = createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, {}, true);

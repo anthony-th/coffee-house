@@ -68,7 +68,9 @@ const contactItems = [
 ];
 
 contactItems.forEach(({ href, innerHTML }) => {
-  const contactLink = createElement('a', ['contacts-link'], '', href ? { href, target: '_blank' } : {});
+  const contactLink = href
+    ? createElement('a', ['contacts-link'], '', { href, target: '_blank' })
+    : createElement('p', ['contacts-link'], '');
   contactLink.innerHTML = innerHTML;
   rightContacts.append(contactLink);
 });
