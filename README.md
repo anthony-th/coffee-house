@@ -158,8 +158,10 @@ The form of evaluation for each part of the task is a cross-check review.
    - When manually switching, the progress bar state of the switched slide resets, and the progress bar of the displayed slide starts to fill
    - When switching to the right after the third element, it returns to the first. When switching to the left after the first element, it returns to the third
    - Example of carousel operation on desktop:
+   
      ![](./src/assets/img/carousel_d.gif)
    - Example of carousel operation on mobile:
+
      ![](./src/assets/img/carousel_m.gif)
 3. Implementation of the Category switching for products on the `menu` page
    - The Coffee category is active and the corresponding products are displayed when opening or reloading the `menu` page
