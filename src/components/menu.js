@@ -14,6 +14,8 @@ const categories = [
 ];
 
 let activeTab = null;
+let selectAddPrice = null;
+let selectAddArray = [];
 
 categories.forEach((category, index) => {
   const tabLink = createElement('a', ['tabs-link', 'user-select-none']);
@@ -47,7 +49,7 @@ let initialQuantityProducts;
 const cardVisible = [];
 let visibleCardsCount = window.innerWidth <= 768 ? 4 : 8; 
 
-function filterProducts(category) {
+const filterProducts = (category) => {
   cardVisible.length = 0;
   manuList.innerHTML = '';
   const filteredProducts = dataProductsJson.filter(el => el.category === category);
@@ -60,7 +62,7 @@ function filterProducts(category) {
   });
 }
 
-function createMenuItem(item) {
+const createMenuItem = (item) => {
   const menuListItem = createElement('div', ['card', 'cursor-pointer']);
   const listImgWrapper = createElement('div', ['item-wrapper']);
   const listItemImg = createElement('img', ['item-img'], '', { src: item.img, alt: '' });
@@ -84,11 +86,11 @@ const svgReload =  createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/
 <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, {}, true);
 
-tabsReload.onclick = tabsReloadRotate;
-
-function tabsReloadRotate() {
+const tabsReloadRotate = () => {
   svgReload.classList.add('rotate360');
 }
+
+tabsReload.onclick = tabsReloadRotate;
 
 tabsReload.addEventListener('animationend', () => {
   svgReload.classList.remove('rotate360');
@@ -100,20 +102,20 @@ tabsReload.addEventListener('animationend', () => {
   }
 });
 
-function showCards() {
+const showCards = () => {
   cardVisible.forEach((card, index) => {
     card.style.display = index < visibleCardsCount ? 'flex' : 'none';
   });
 }
 
-function checkInnerWidthForTabReload() {
+const checkInnerWidthForTabReload = () => {
   const isSmallScreen = window.innerWidth <= 768;
   visibleCardsCount = isSmallScreen ? 4 : 8;
   tabsReload.style.display = isSmallScreen && initialQuantityProducts > 4 ? 'flex' : 'none';
   showCards();
 }
 
-function resizeWin() {
+const resizeWin = () => {
   checkWidth();
   checkInnerWidthForTabReload();
   menu.className = 'menu link-active';
@@ -124,7 +126,7 @@ checkInnerWidthForTabReload();
 
 window.onresize = resizeWin;
 
-function openModal(item) {
+const openModal = (item) => {
   const shadow = createElement('div', ['modal-shadow']);
   const modal = createElement('div', ['modal']);
   const blockImage = createElement("div", ["modal-image-block"]);
@@ -217,16 +219,15 @@ function openModal(item) {
   const alertTitle = createElement("p", ["alert-title"], 'The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.');
   const closeButton = createElement("button", ['button-close'], 'Close');
 
-  closeButton.onclick = closeModal;
-  shadow.onclick = closeModal;
-
-  function closeModal() {
+  const closeModal = () => {
     modal.remove();
     shadow.remove();
     document.body.classList.remove('overflow-hidden');
   }
 
-  let selectAddPrice = null;
+  closeButton.onclick = closeModal;
+  shadow.onclick = closeModal;
+
 
   additives.append(additivesTitle, additivesButtons);
   sizeBlock.append(sizeTitle, sizeButtons);
@@ -234,9 +235,7 @@ function openModal(item) {
   totalBlock.append(totalText, totalPrice);
   alertBlock.append(alertSvg, alertTitle);
 
-  let selectAddArray = [];
-
-  function updateSelectAdd() {
+  const updateSelectAdd = () => {
     selectAddArray = [];
     additivesButtonsArr.forEach((button, index) => {
       if (button.classList.contains('additives-button-active')) {
@@ -248,11 +247,11 @@ function openModal(item) {
 
   totalPrice.textContent = `$${(Number(item.price) + Number(selectSize) + Number(selectAddPrice)).toFixed(2)}`;
 
-  function calculateTotalPrice(item, selectSize, selectAddPrice) {
+  const calculateTotalPrice = (item, selectSize, selectAddPrice) => {
     return (Number(item.price) + Number(selectSize) + Number(selectAddPrice)).toFixed(2);
   }
 
-  function updateTotalPrice() {
+  const updateTotalPrice = () => {
     let totalAddPrice = 0;
     selectAddArray.forEach((el) => {
       totalAddPrice += Number(el.addprice);
@@ -260,9 +259,7 @@ function openModal(item) {
     totalPrice.textContent = `$${calculateTotalPrice(item, selectSize, totalAddPrice)}`;
   }
 
-  window.onresize = function() {
-    closeModal();
-  };
+  window.onresize = closeModal;
 
   blockText.append(titleBlock, sizeBlock, additives, totalBlock, alertBlock, closeButton);
   modal.append(blockImage, blockText);

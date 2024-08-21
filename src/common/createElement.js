@@ -1,4 +1,4 @@
-export function createElement(tag, classes = [], textContent = '', attributes = {}, isHTML = false) {
+export const createElement = (tag, classes = [], textContent = '', attributes = {}, isHTML = false) => {
   const element = document.createElement(tag);
   if (classes.length > 0) element.classList.add(...classes);
   if (isHTML) {

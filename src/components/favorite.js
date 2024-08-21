@@ -22,6 +22,28 @@ let pauseStopInterval;
 let touchFingerStart = 0;
 let touchFingerEnd = 0;
 
+const autoScrollX = () => {
+  autoScrollInterval = setInterval(nextSlide, intervalTime);
+  pauseInterval = new Date().getTime();
+}
+
+const slidersMouseOver = () => {
+  clearInterval(autoScrollInterval);
+  pause = true;
+  progressLines.forEach(line => line.classList.add('pause')); 
+  mouseOverTime = new Date().getTime();
+  pauseStopInterval = mouseOverTime - pauseInterval;
+  intervalTime -= pauseStopInterval;
+}
+
+const slidersMouseOut = () => {
+  if (pause === true) {
+    autoScrollX();
+    pause = false;
+    progressLines.forEach(line => line.classList.remove('pause'));
+  }
+}
+
 sliderJson.forEach((item) => {
   const favoriteSlider = createElement('div', ['slider']);
   const sliderImg = createElement('img', ['slider-img', 'user-select-none'], '', { src: item.img, alt: '' });
@@ -40,6 +62,62 @@ sliderJson.forEach((item) => {
   allSliders.push(favoriteSlider);
 });
 
+const updateLinesStatus = () => {
+  progressLines.forEach((line, index) => {
+    line.classList.toggle('active-progress-line', index === startSlider);
+  });
+}
+
+const currentSlide = (index) => {
+  const translateX = `translateX(${-100 * index}%)`;
+  allSliders.forEach(slider => slider.style.transform = translateX);
+}
+
+const nextSlide = () => {
+  clearInterval(autoScrollInterval);
+  intervalTime = 6900;
+  autoScrollX();
+  startSlider = (startSlider + 1) % totalSliders;
+  currentSlide(startSlider);
+  updateLinesStatus();
+}
+
+const prevSlide = () => {
+  clearInterval(autoScrollInterval);
+  intervalTime = 6900;
+  autoScrollX();
+  startSlider = (startSlider - 1 + totalSliders) % totalSliders;
+  currentSlide(startSlider);
+  updateLinesStatus();
+}
+
+const touchStart = (e) => {
+  e.preventDefault();
+  touchFingerStart = e.touches[0].clientX;
+  slidersMouseOver();
+}
+
+const touchMove = (e) => {
+  touchFingerEnd = e.touches[0].clientX;
+}
+
+const touchEnd = (e) => {
+  e.preventDefault();
+  slidersMouseOut();
+  swipe();
+}
+
+const swipe = () => {
+  if (touchFingerStart && touchFingerEnd) {
+    const direction = touchFingerStart - touchFingerEnd;
+    if (Math.abs(direction) >= 100) {
+      direction > 0 ? nextSlide() : prevSlide();
+    }
+  }
+  touchFingerStart = 0;
+  touchFingerEnd = 0;
+}
+
 const favoriteArrowRight = createElement('a', ['arrow', 'cursor-pointer']);
 const arrowRightIcon = createElement('svg', [], `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,84 +130,6 @@ const progressLines = Array.from({ length: totalSliders }, (_, index) => {
   sliderProgressBar.append(line);
   return line;
 });
-
-function autoScrollX() {
-  autoScrollInterval = setInterval(nextSlide, intervalTime);
-  pauseInterval = new Date().getTime();
-}
-
-function slidersMouseOver() {
-  clearInterval(autoScrollInterval);
-  pause = true;
-  progressLines.forEach(line => line.classList.add('pause')); 
-  mouseOverTime = new Date().getTime();
-  pauseStopInterval = mouseOverTime - pauseInterval;
-  intervalTime -= pauseStopInterval;
-}
-
-function slidersMouseOut() {
-  if (pause === true) {
-    autoScrollX();
-    pause = false;
-    progressLines.forEach(line => line.classList.remove('pause'));
-  }
-}
-
-function updateLinesStatus() {
-  progressLines.forEach((line, index) => {
-    line.classList.toggle('active-progress-line', index === startSlider);
-  });
-}
-
-function currentSlide(index) {
-  const translateX = `translateX(${-100 * index}%)`;
-  allSliders.forEach(slider => slider.style.transform = translateX);
-}
-
-function nextSlide() {
-  clearInterval(autoScrollInterval);
-  intervalTime = 6900;
-  autoScrollX();
-  startSlider = (startSlider + 1) % totalSliders;
-  currentSlide(startSlider);
-  updateLinesStatus();
-}
-
-function prevSlide() {
-  clearInterval(autoScrollInterval);
-  intervalTime = 6900;
-  autoScrollX();
-  startSlider = (startSlider - 1 + totalSliders) % totalSliders;
-  currentSlide(startSlider);
-  updateLinesStatus();
-}
-
-function touchStart(e) {
-  e.preventDefault();
-  touchFingerStart = e.touches[0].clientX;
-  slidersMouseOver();
-}
-
-function touchMove(e) {
-  touchFingerEnd = e.touches[0].clientX;
-}
-
-function touchEnd(e) {
-  e.preventDefault();
-  slidersMouseOut();
-  swipe();
-}
-
-function swipe() {
-  if (touchFingerStart && touchFingerEnd) {
-    const direction = touchFingerStart - touchFingerEnd;
-    if (Math.abs(direction) >= 100) {
-      direction > 0 ? nextSlide() : prevSlide();
-    }
-  }
-  touchFingerStart = 0;
-  touchFingerEnd = 0;
-}
 
 favoriteSliders.addEventListener('touchstart', touchStart);
 favoriteSliders.addEventListener('touchmove', touchMove);

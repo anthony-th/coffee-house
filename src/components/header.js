@@ -46,14 +46,7 @@ const menuImg = createElement('svg', ['menu__image'], `<svg width="20" height="2
 <path d="M13.333 9.16675H15.4163C16.5669 9.16675 17.4997 10.0995 17.4997 11.2501C17.4997 12.4007 16.5669 13.3334 15.4163 13.3334H14.1663" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, {}, true);
 
-listItem1.onclick = toggleMenu;
-listItem2.onclick = toggleMenu;
-listItem3.onclick = toggleMenu;
-listItem4.onclick = toggleMenu;
-burgerMenu.onclick = toggleMenu;
-menu.onclick = toggleMenu;
-
-function toggleMenu() {
+const toggleMenu = () => {
   if (window.innerWidth <= 768) {
     navList.classList.toggle('toggle-menu');
     menu.classList.toggle('toggle-menu');
@@ -63,7 +56,7 @@ function toggleMenu() {
   }
 }
 
-export function checkWidth() {
+export const checkWidth = () => {
   menu.className = 'menu'
   navList.className = 'list';
   document.body.className = '';
@@ -72,6 +65,12 @@ export function checkWidth() {
 }
 
 window.onresize = checkWidth;
+listItem1.onclick = toggleMenu;
+listItem2.onclick = toggleMenu;
+listItem3.onclick = toggleMenu;
+listItem4.onclick = toggleMenu;
+burgerMenu.onclick = toggleMenu;
+menu.onclick = toggleMenu;
 
 logo.append(logoImage);
 burgerMenu.append(burgerLine1, burgerLine2);
