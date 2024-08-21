@@ -9,6 +9,18 @@
 ### Project's Description
 Coffee House is a landing page consisting of two pages, responsive and with interactive elements, implemented according to PerfectPixel based on a Figma design
 
+### Installation
+1. Clone the repo:
+```console
+git clone https://github.com/anthony-th/hangman.git
+```
+2. Install the NPM packages in the project folder:
+```console
+npm install
+```
+
+## This project was implemented according to the criteria and rules outlined below:
+
 ### Project Work Stages
 The task consists of three parts:
 
@@ -40,8 +52,6 @@ The form of evaluation for each part of the task is a cross-check review.
 10. The code must be readable, without minification or obfuscation. You are allowed to use bundlers, such as `Vite` or `Webpack`, but enable `source maps`. Gulp is unmaintained and should not be used.
 
 
-- `Coffee-House. Part-1: Fixed Layout`
-
-- `Coffee-House. Part-2: Responsive Design`
-
-- `Coffee-House. Part-3: Adding Functionality`
+`Coffee-House. Part-1: Fixed Layout`
+`Coffee-House. Part-2: Responsive Design`
+`Coffee-House. Part-3: Adding Functionality`
