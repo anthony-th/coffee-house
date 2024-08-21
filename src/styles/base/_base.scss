@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+body {
+  background: $text-light;
+  min-width: 380px;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
