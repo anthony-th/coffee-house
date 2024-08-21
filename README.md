@@ -9,15 +9,35 @@
 ### Project's Description
 Coffee House is a landing page consisting of two pages, responsive and with interactive elements, implemented according to PerfectPixel based on a Figma design
 
-### Installation
-1. Clone the repo:
-```console
+### Quick Start
+
+Follow these steps to set up the project locally on your machine.
+
+*Prerequisites*
+
+Make sure you have the following installed on your machine:
+
+   - [Git](https://git-scm.com/)
+   - [Node.js](https://nodejs.org/en)
+   - [npm](https://www.npmjs.com/) (Node Package Manager)
+
+1. Clone the Repository:
+```bash
 git clone https://github.com/anthony-th/hangman.git
+cd hangman
 ```
 2. Install the NPM packages in the project folder:
-```console
+```bash
 npm install
 ```
+
+3. Running the Project
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
 ## This project was implemented according to the criteria and rules outlined below:
 
