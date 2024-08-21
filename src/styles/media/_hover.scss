@@ -1,0 +1,223 @@
+@use '../abstracts' as *;
+
+@media (hover: hover) and (pointer: fine) {
+  .modal {
+    .modal-image-block {
+      &:hover {
+        .modal-image {
+          scale: 1.2;
+        }
+      }
+    }
+    .modal-text-block {
+      .size-block {
+        .size-buttons {
+          .size-button {
+            &:hover {
+              cursor: pointer;
+              background: $gray;
+              .size-circle {
+                background: $text-light;
+              }
+              .size-ml {
+                color: $text-light;
+              }
+            }
+            &.size-button-active {
+              cursor: default;
+            }
+          }
+        }
+      }
+      .additives {
+        .additives-buttons {
+          .additives-button {
+            &:hover {
+              cursor: pointer;
+              background: $gray;
+              .additives-circle {
+                background: $text-light;
+              }
+              .additives-elements {
+                color: $text-light;
+              }
+            }
+            &.additives-button-active {
+              cursor: default;
+            }
+          }
+        }
+      }
+      .button-close {
+        &:hover {
+          background: $gray;
+          color: $text-light;
+        }
+      }
+    }
+  }
+  .header {
+    .nav {
+      .burger {
+        &:hover {
+          background: $gray;
+          .burger-line {
+            background: $text-light;
+          }
+        }
+      }
+    }
+  }
+  .logo {
+    &:hover {
+      .logo-image {
+        svg {
+          path {
+            &:first-child {
+              fill: $dark;
+            }
+            &:nth-child(n+2):nth-child(-n+9) {
+              fill: $accent;
+            }
+          }
+        }
+      }
+    }
+  }
+  .social-icon {
+    &:hover {
+      background: #E1D4C9;
+      svg {
+        path {
+          stroke: $dark;
+        }
+      }
+    }
+  }
+  .list-item,
+  .menu {
+    &:hover {
+      &::after {
+        width: 100%;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  .about-section {
+    .about-block {
+      .img-wrapper {
+        &:hover {
+          .about-img {
+            scale: 1;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    .right-block {
+      .contacts-list {
+        .contacts-link {
+          &:not(:last-child):hover {
+            &::after {
+              width: 100%;
+              transition: all 0.5s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+  .favorite-section {
+    .slider-block {
+      .arrow {
+        &:hover {
+          background-color: $gray;
+          svg {
+            path {
+              stroke: $text-light;
+            }
+          }
+        }
+      }
+    }
+  }
+  .hero-section {
+    .hero-block {
+      .hero-btn {
+        &:hover {
+          span {
+            left: -4px;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .menu-section {
+    .menu-tabs {
+      .tabs-list {
+        .tabs-link {  
+          &:hover {
+            background: $gray;
+            cursor: pointer;
+            .link-block {
+              background: $text-light;
+            }
+            .link-text {
+              color: $text-light;
+            }
+          }
+        }
+        .tab-active {
+          &:hover {
+            cursor: default;
+          }
+        }
+      }
+    }
+    .menu-list {
+      .card {
+        &:hover {
+          .item-wrapper {
+            .item-img {
+              scale: 0.93;
+            }
+          }
+        }
+      }
+    }
+    .tabs-reload {
+      &:hover {
+        background: $gray;
+        svg {
+          path {
+            stroke: $text-light;
+          }
+        }
+      }
+    }
+  }
+  .mobile-section {
+    .mobile-block {
+      .mobile-links {
+        .mobile-link {
+          &:hover {
+            background-color: $gray;
+            .links-title,
+            .links-subtitle {
+              color: $text-light;
+            }
+            svg {
+              path {
+                fill: $text-light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

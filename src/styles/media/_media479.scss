@@ -1,0 +1,26 @@
+@media screen and (max-width: 479px) {
+  .menu-section {
+    .menu-tabs {
+      .title {
+        max-width: 348px;
+      }
+    }
+  }
+  .menu-section {
+    .menu-tabs {
+      .tabs-list {
+        gap: 8px;
+      }
+    }
+  }
+  .footer {
+    margin: 100px 16px 40px;
+    padding: 60px 16px;
+    gap: 40px;
+    .footer-block {
+      .left-title {
+        font-size: 32px;
+      }
+    }
+  }
+}
