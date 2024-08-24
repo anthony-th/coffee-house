@@ -6,24 +6,6 @@
       position: relative;
       z-index: 7;
     }
-    .menu {
-      right: -100%;
-      top: 600px;
-      width: 143px;
-      height: 100%;
-      font-size: 32px;
-      line-height: 125%;
-      z-index: 7;
-      gap: 17px;
-      position: fixed;
-      max-height: 45px;
-      .menu__image {
-        svg {
-          width: 40px;
-          height: 40px;
-        }
-      }
-    }
     .nav {
       .burger {
         display: flex;
@@ -43,8 +25,27 @@
         .list-item {
           font-size: 32px;
           line-height: 125%;
+          &:nth-child(5) {
+            display: block;
+            margin-top: 40px;
+          }
+          .menu {
+            display: flex;
+            font-size: 32px;
+            line-height: 125%;
+            gap: 17px;
+            .menu__image {
+              svg {
+                width: 40px;
+                height: 40px;
+              }
+            }
+          }
         }
       }
+    }
+    .menu {
+      display: none;
     }
   }
   .menu-section {

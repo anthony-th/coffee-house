@@ -1,7 +1,7 @@
 import { createElement } from "../common/createElement";
 
 const createLink = (href, iconSvg, titleText, subtitleText) => {
-  const link = createElement('a', ['mobile-link'], '', { href, target: '_blank' });
+  const link = createElement('a', ['mobile-link'], '', { href, target: '_blank', rel: 'noreferrer noopener' });
   const icon = createElement('svg', [], iconSvg, {}, true);
   const textBlock = createElement('div', ['mobile-textblock']);
   const title = createElement('p', ['links-title'], titleText);

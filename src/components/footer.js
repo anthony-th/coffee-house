@@ -26,7 +26,7 @@ const socialIcons = [
 ];
 
 socialIcons.forEach(({ href, svg, iconAlt }) => {
-  const link = createElement('a', ['social-icon'], '', { href, target: '_blank', alt: iconAlt, 'aria-label': iconAlt });
+  const link = createElement('a', ['social-icon'], '', { href, target: '_blank', rel: 'noreferrer noopener', alt: iconAlt, 'aria-label': iconAlt });
   link.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">${svg}</svg>`;
   socialLinks.append(link);
 });
@@ -69,7 +69,7 @@ const contactItems = [
 
 contactItems.forEach(({ href, innerHTML }) => {
   const contactLink = href
-    ? createElement('a', ['contacts-link'], '', { href, target: '_blank' })
+    ? createElement('a', ['contacts-link'], '', { href, target: '_blank', rel: 'noreferrer noopener' })
     : createElement('p', ['contacts-link'], '');
   contactLink.innerHTML = innerHTML;
   rightContacts.append(contactLink);

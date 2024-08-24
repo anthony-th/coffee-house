@@ -33,12 +33,13 @@ export const itemLink2 = createElement('a', ['item-link', 'cursor-pointer'], 'Ab
 const listItem3 = createElement('li', ['list-item']);
 export const itemLink3 = createElement('a', ['item-link', 'cursor-pointer'], 'Mobile app', { href: '#mobileapp' });
 const listItem4 = createElement('li', ['list-item']);
+const listItem5 = createElement('li', ['list-item']);
 const itemLink4 = createElement('a', ['item-link', 'cursor-pointer'], 'Contact us', { href: '#contactus' });
-const burgerMenu = createElement('div', ['burger', 'cursor-pointer']);
-const burgerLine1 = createElement('hr', ['burger-line']);
-const burgerLine2 = createElement('hr', ['burger-line']);
-export const menu = createElement('div', ['menu']);
-export const menuLink = createElement('a', ['menu-link'], 'Menu', { href: './menu.html' });
+const burgerMenu = createElement('button', ['burger', 'cursor-pointer']);
+const burgerLine1 = createElement('span', ['burger-line']);
+const burgerLine2 = createElement('span', ['burger-line']);
+export const menu = createElement('a', ['menu', 'cursor-pointer'], '', { href: './menu.html' });
+const menuLink = createElement('p', ['menu-link'], 'Menu');
 const menuImg = createElement('svg', ['menu__image'], `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.167 9.76667V11.6667C14.167 14.8883 11.5553 17.5 8.33366 17.5C5.112 17.5 2.50033 14.8883 2.50033 11.6667V9.76667C2.50033 9.4353 2.76896 9.16667 3.10033 9.16667H13.567C13.8984 9.16667 14.167 9.4353 14.167 9.76667Z" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M10.0003 7.50008C10.0003 6.66675 10.5956 5.83341 11.786 5.83341V5.83341C13.101 5.83341 14.167 4.76743 14.167 3.45246V2.91675" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,7 +80,9 @@ listItem1.append(itemLink1);
 listItem2.append(itemLink2);
 listItem3.append(itemLink3);
 listItem4.append(itemLink4);
-navList.append(listItem1, listItem2, listItem3, listItem4);
+navList.append(listItem1, listItem2, listItem3, listItem4, listItem5);
 menu.append(menuLink);
 menu.append(menuImg);
+export const menuCopy = menu.cloneNode(true);
+listItem5.append(menuCopy);
 header.append(logo, nav, menu);
