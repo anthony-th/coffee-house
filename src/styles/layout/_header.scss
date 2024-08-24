@@ -13,9 +13,6 @@
     @include flex(flex-start);
     gap: 8px;
     align-items: flex-start;
-    &.toggle-menu {
-      right: calc(50% - 71.5px);
-    }
   }
 }
 
@@ -44,5 +41,8 @@
     transform: translateX(-50%);
     z-index: 2;
     transition: all 0.3s ease-in-out;
+  }
+  &:nth-child(5) {
+    display: none;
   }
 }

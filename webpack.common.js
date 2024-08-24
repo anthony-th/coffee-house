@@ -64,7 +64,16 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "src/assets/img/", to: "assets/img/" },
+        {
+          from: "src/assets/img/",
+          to: "assets/img/",
+          globOptions: {
+            ignore: [
+              '**/carousel_d.gif',
+              '**/carousel_m.gif'
+            ]
+          },
+        },
         { from: "src/assets/videos/", to: "assets/videos/" },
       ],
     }),
