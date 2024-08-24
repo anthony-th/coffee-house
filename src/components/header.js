@@ -33,6 +33,7 @@ export const itemLink2 = createElement('a', ['item-link', 'cursor-pointer'], 'Ab
 const listItem3 = createElement('li', ['list-item']);
 export const itemLink3 = createElement('a', ['item-link', 'cursor-pointer'], 'Mobile app', { href: '#mobileapp' });
 const listItem4 = createElement('li', ['list-item']);
+const listItem5 = createElement('li', ['list-item']);
 const itemLink4 = createElement('a', ['item-link', 'cursor-pointer'], 'Contact us', { href: '#contactus' });
 const burgerMenu = createElement('button', ['burger', 'cursor-pointer']);
 const burgerLine1 = createElement('span', ['burger-line']);
@@ -79,7 +80,9 @@ listItem1.append(itemLink1);
 listItem2.append(itemLink2);
 listItem3.append(itemLink3);
 listItem4.append(itemLink4);
-navList.append(listItem1, listItem2, listItem3, listItem4);
+navList.append(listItem1, listItem2, listItem3, listItem4, listItem5);
 menu.append(menuLink);
 menu.append(menuImg);
+export const menuCopy = menu.cloneNode(true);
+listItem5.append(menuCopy);
 header.append(logo, nav, menu);
