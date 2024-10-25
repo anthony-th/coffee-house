@@ -19,4 +19,5 @@ srcImages.forEach(src => {
 });
 
 aboutSection.append(aboutTitle, aboutGalery);
+
 export { aboutSection };
