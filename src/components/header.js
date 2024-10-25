@@ -1,6 +1,6 @@
 import { createElement } from "./common/createElement";
 
-export const header = createElement('header', ['header']);
+const header = createElement('header', ['header']);
 const logo = createElement('a', ['logo'], '', { href: './index.html', alt: 'logo', 'aria-label': 'logo' });
 const logoImage = createElement('svg', ['logo-image'], `<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M69 25C69 35.4934 60.4934 44 50 44C39.5066 44 31 35.4934 31 25C31 14.5066 39.5066 6 50 6C60.4934 6 69 14.5066 69 25Z" fill="#B0907A"/>
@@ -27,18 +27,18 @@ const logoImage = createElement('svg', ['logo-image'], `<svg width="100" height=
 const nav = createElement('nav', ['nav']);
 const navList = createElement('ul', ['list']);
 const listItem1 = createElement('li', ['list-item']);
-export const itemLink1 = createElement('a', ['item-link', 'cursor-pointer'], 'Favorite coffee', { href: '#favorite' });
+const itemLink1 = createElement('a', ['item-link', 'cursor-pointer'], 'Favorite coffee', { href: '#favorite' });
 const listItem2 = createElement('li', ['list-item']);
-export const itemLink2 = createElement('a', ['item-link', 'cursor-pointer'], 'About', { href: '#about' });
+const itemLink2 = createElement('a', ['item-link', 'cursor-pointer'], 'About', { href: '#about' });
 const listItem3 = createElement('li', ['list-item']);
-export const itemLink3 = createElement('a', ['item-link', 'cursor-pointer'], 'Mobile app', { href: '#mobileapp' });
+const itemLink3 = createElement('a', ['item-link', 'cursor-pointer'], 'Mobile app', { href: '#mobileapp' });
 const listItem4 = createElement('li', ['list-item']);
 const listItem5 = createElement('li', ['list-item']);
 const itemLink4 = createElement('a', ['item-link', 'cursor-pointer'], 'Contact us', { href: '#contactus' });
 const burgerMenu = createElement('button', ['burger', 'cursor-pointer']);
 const burgerLine1 = createElement('span', ['burger-line']);
 const burgerLine2 = createElement('span', ['burger-line']);
-export const menu = createElement('a', ['menu', 'cursor-pointer'], '', { href: './menu.html' });
+const menu = createElement('a', ['menu', 'cursor-pointer'], '', { href: './menu.html' });
 const menuLink = createElement('p', ['menu-link'], 'Menu');
 const menuImg = createElement('svg', ['menu__image'], `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.167 9.76667V11.6667C14.167 14.8883 11.5553 17.5 8.33366 17.5C5.112 17.5 2.50033 14.8883 2.50033 11.6667V9.76667C2.50033 9.4353 2.76896 9.16667 3.10033 9.16667H13.567C13.8984 9.16667 14.167 9.4353 14.167 9.76667Z" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,7 +57,7 @@ const toggleMenu = () => {
   }
 }
 
-export const checkWidth = () => {
+const checkWidth = () => {
   menu.className = 'menu'
   navList.className = 'list';
   document.body.className = '';
@@ -83,6 +83,8 @@ listItem4.append(itemLink4);
 navList.append(listItem1, listItem2, listItem3, listItem4, listItem5);
 menu.append(menuLink);
 menu.append(menuImg);
-export const menuCopy = menu.cloneNode(true);
+const menuCopy = menu.cloneNode(true);
 listItem5.append(menuCopy);
 header.append(logo, nav, menu);
+
+export { header, itemLink1, itemLink2, itemLink3, itemLink4, menu, checkWidth, menuCopy };

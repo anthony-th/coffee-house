@@ -1,7 +1,7 @@
 import { createElement } from './common/createElement';
 import sliderJson from '../data/slider.json';
 
-export const favoriteSection = createElement('section', ['section', 'favorite-section'], '', { id: 'favorite'});
+const favoriteSection = createElement('section', ['section', 'favorite-section'], '', { id: 'favorite'});
 const favoriteTitle = createElement('h2', ['title'], `Choose your <span class="italic-accent">favorite</span> coffee`, {}, true);
 const favoriteSliderWrapper = createElement('div', ['slider-block']);
 const favoriteArrowLeft = createElement('button', ['arrow', 'cursor-pointer'], '', { 'aria-label': 'left button slider'});
@@ -145,3 +145,5 @@ favoriteArrowLeft.append(arrowLeftIcon);
 favoriteArrowRight.append(arrowRightIcon);
 favoriteSliderWrapper.append(favoriteArrowLeft, favoriteSliders, favoriteArrowRight);
 favoriteSection.append(favoriteTitle, favoriteSliderWrapper, sliderProgressBar);
+
+export { favoriteSection };

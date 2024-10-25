@@ -11,7 +11,7 @@ const createLink = (href, iconSvg, titleText, subtitleText) => {
   return link;
 };
 
-export const mobileSection = createElement('section', ['section', 'mobile-section'], '', { id: 'mobileapp' });
+const mobileSection = createElement('section', ['section', 'mobile-section'], '', { id: 'mobileapp' });
 const mobileLinksText = createElement('div', ['mobile-block']);
 const mobileTitle = createElement('h2', ['title'], `<span class="italic-accent">Download</span>  our apps to start ordering`, {}, true);
 const mobileText = createElement('p', ['mobile-text'], `Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are`, {}, true);
@@ -43,3 +43,5 @@ const linkGogl = createLink(
 mobileLinksText.append(mobileTitle, mobileText, mobileLinks);
 mobileLinks.append(linkStore, linkGogl);
 mobileSection.append(mobileLinksText, mobileImg);
+
+export { mobileSection };

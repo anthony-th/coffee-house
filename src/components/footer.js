@@ -1,6 +1,6 @@
 import { createElement } from "./common/createElement";
 
-export const footer = createElement('footer', ['footer'], '', { id: 'contactus' });
+const footer = createElement('footer', ['footer'], '', { id: 'contactus' });
 const leftBlock = createElement('div', ['footer-block', 'left-block']);
 const leftTitle = createElement('h2', ['left-title'], `Sip, Savor, Smile. <span class="italic-accent">It\’s coffee time!</span>`, {}, true);
 const socialLinks = createElement('div', ['social-block']);
@@ -78,3 +78,5 @@ contactItems.forEach(({ href, innerHTML }) => {
 leftBlock.append(leftTitle, socialLinks);
 rightBlock.append(rightTitle, rightContacts);
 footer.append(leftBlock, rightBlock);
+
+export { footer };

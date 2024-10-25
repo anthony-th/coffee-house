@@ -1,6 +1,6 @@
 import { createElement } from "./common/createElement";
 
-export const heroSection = createElement('section', ['section', 'hero-section']);
+const heroSection = createElement('section', ['section', 'hero-section']);
 const heroVideoAutoPlay = createElement('video', ['hero-video']);
 heroVideoAutoPlay.autoplay = true;
 heroVideoAutoPlay.loop = true;
@@ -19,3 +19,5 @@ heroContent.append(heroTitle, heroSubtitle, heroButton);
 heroVideoAutoPlay.append(videoSource);
 heroSection.append(heroVideoAutoPlay);
 heroSection.append(heroContent);
+
+export { heroSection };

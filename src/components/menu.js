@@ -2,7 +2,7 @@ import { createElement } from './common/createElement';
 import dataProductsJson from '../data/products.json';
 import { checkWidth, menu } from './header';
 
-export const menuSection = createElement('section', ['section', 'menu-section']);
+const menuSection = createElement('section', ['section', 'menu-section']);
 const manuTabs = createElement('div', ['menu-tabs']);
 const manuTitle = createElement('h1', ['title'], `Behind each of our cups hides an <span class="italic-accent">amazing surprise</span>`, {}, true);
 const tabsList = createElement('div', ['tabs-list']);
@@ -270,3 +270,5 @@ const openModal = (item) => {
 tabsReload.append(svgReload);
 manuTabs.append(manuTitle, tabsList);
 menuSection.append(manuTabs, manuList, tabsReload);
+
+export { menuSection };
