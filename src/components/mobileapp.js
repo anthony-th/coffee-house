@@ -1,4 +1,4 @@
-import { createElement } from "../common/createElement";
+import { createElement } from "./common/createElement";
 
 const createLink = (href, iconSvg, titleText, subtitleText) => {
   const link = createElement('a', ['mobile-link'], '', { href, target: '_blank', rel: 'noreferrer noopener' });

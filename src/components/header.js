@@ -1,4 +1,4 @@
-import { createElement } from "../common/createElement";
+import { createElement } from "./common/createElement";
 
 export const header = createElement('header', ['header']);
 const logo = createElement('a', ['logo'], '', { href: './index.html', alt: 'logo', 'aria-label': 'logo' });

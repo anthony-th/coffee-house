@@ -1,4 +1,4 @@
-import { createElement } from '../common/createElement';
+import { createElement } from './common/createElement';
 import sliderJson from '../data/slider.json';
 
 export const favoriteSection = createElement('section', ['section', 'favorite-section'], '', { id: 'favorite'});

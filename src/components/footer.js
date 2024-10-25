@@ -1,4 +1,4 @@
-import { createElement } from "../common/createElement";
+import { createElement } from "./common/createElement";
 
 export const footer = createElement('footer', ['footer'], '', { id: 'contactus' });
 const leftBlock = createElement('div', ['footer-block', 'left-block']);

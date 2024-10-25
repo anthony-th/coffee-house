@@ -1,4 +1,4 @@
-import { createElement } from "../common/createElement";
+import { createElement } from "./common/createElement";
 import { heroSection } from "./hero";
 import { favoriteSection } from "./favorite";
 import { aboutSection } from "./about";

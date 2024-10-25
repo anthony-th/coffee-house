@@ -1,4 +1,4 @@
-import { createElement } from '../common/createElement';
+import { createElement } from './common/createElement';
 import dataProductsJson from '../data/products.json';
 import { checkWidth, menu } from './header';
 

@@ -1,4 +1,4 @@
-import { createElement } from "../common/createElement";
+import { createElement } from "./common/createElement";
 
 export const heroSection = createElement('section', ['section', 'hero-section']);
 const heroVideoAutoPlay = createElement('video', ['hero-video']);
