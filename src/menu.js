@@ -1,4 +1,4 @@
-import './styles/main.scss';
+import './assets/styles/main.scss';
 
 import { header, menu, menuCopy, itemLink1, itemLink2, itemLink3 } from './components/header';
 import { menuMain } from './components/menu-main';
